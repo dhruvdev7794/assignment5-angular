@@ -15,6 +15,26 @@ export class UserServiceClient {
     });
   }
 
+  findUserByCredentials(username, password) {
+    return fetch('http://localhost:4000/api/user/' + username + '/username/' + password + '/password')
+      .then(function (response) {
+        if (response.status > 400) {
+          return null;
+        }
+        return response.json();
+      });
+  }
+
+  findUserByUsername(username) {
+    return fetch('http://localhost:4000/api/user/' + username + '/username')
+      .then(function (response) {
+        if (response.status > 400) {
+          return null;
+        }
+        return response.json();
+      });
+  }
+
   findUserById(userId) {
     return fetch('http://localhost:4000/api/user/' + userId)
       .then(response => response.json());

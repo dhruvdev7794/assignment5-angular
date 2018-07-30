@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SectionServiceClient} from '../services/section.service.client';
 
 @Component({
@@ -9,7 +9,9 @@ import {SectionServiceClient} from '../services/section.service.client';
 })
 export class SectionListComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private sectionService: SectionServiceClient) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private sectionService: SectionServiceClient) {
     this.route.params.subscribe(params => this.loadSections(params['courseId']));
   }
 
@@ -25,6 +27,8 @@ export class SectionListComponent implements OnInit {
 
   enroll(section) {
     // alert(section._id);
+    this.sectionService.enrollStudentInSection(section._id)
+      .then(() => this.router.navigate['profile']);
   }
 
   createSection(sectionName, seats) {

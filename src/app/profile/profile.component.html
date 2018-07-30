@@ -17,6 +17,14 @@
     Update
   </button>
 
+  <h2> Sections: ({{sections.length}})</h2>
+
+  <ul class="list-group">
+    <li *ngFor="let section of sections" class="list-group-item">
+      {{section.sectionId.name}}
+    </li>
+  </ul>
+
   <a (click)="logout()">Logout</a>
   <a routerLink="/home">Home</a>
 
