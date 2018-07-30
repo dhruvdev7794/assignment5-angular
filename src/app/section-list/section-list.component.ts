@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SectionServiceClient} from '../services/section.service.client';
-
+import {UserServiceClient} from '../services/user.service.client';
+let self;
 @Component({
   selector: 'app-section-list',
   templateUrl: './section-list.component.html',
@@ -11,7 +12,9 @@ export class SectionListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private sectionService: SectionServiceClient) {
+              private sectionService: SectionServiceClient,
+              private userService: UserServiceClient) {
+    self = this;
     this.route.params.subscribe(params => this.loadSections(params['courseId']));
   }
 
@@ -19,6 +22,8 @@ export class SectionListComponent implements OnInit {
   sectionName = '';
   seats = '';
   sections = [];
+  username;
+  password;
   loadSections(courseId) {
     this.courseId = courseId;
     return this.sectionService.findSectionsforCourse(courseId)
@@ -28,7 +33,7 @@ export class SectionListComponent implements OnInit {
   enroll(section) {
     // alert(section._id);
     this.sectionService.enrollStudentInSection(section._id)
-      .then(() => this.router.navigate['profile']);
+      .then(() => this.router.navigate(['profile']));
   }
 
   createSection(sectionName, seats) {
@@ -38,6 +43,13 @@ export class SectionListComponent implements OnInit {
       });
   }
   ngOnInit() {
+    this.userService.profile()
+      .then(function (response) {
+        if (response !== null) {
+          self.username = response.username;
+          self.password = response.password;
+        }
+      });
   }
 
 }

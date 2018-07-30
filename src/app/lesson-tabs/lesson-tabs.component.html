@@ -1,5 +1,25 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a *ngFor="let lesson of lessons" class="nav-link active" href="#">Active</a>
-  </li>
-</ul>
+<div class="container-fluid">
+  <h2>Lessons:</h2>
+  <ul class="nav nav-pills">
+    <li *ngFor="let lesson of lessons"
+        [ngClass]="{'active': lesson.id == lessonId}"
+        class="nav-item">
+      <a class="nav-link" routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lesson.id}}">{{lesson.title}}</a>
+    </li>
+  </ul>
+
+  <!--<ul class="nav nav-pills">-->
+    <!--<li class="nav-item">-->
+      <!--<a *ngFor="let lesson of lessons" class="nav-link" href="#">{{lesson.title}}</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+      <!--<a class="nav-link" href="#">Link</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+      <!--<a class="nav-link" href="#">Link</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+      <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+    <!--</li>-->
+  <!--</ul>-->
+</div>

@@ -1,19 +1,23 @@
 <div class="container-fluid">
   <h1>Section for course: {{courseId}}</h1>
+  <div *ngIf="username === 'admin' && password === 'admin'">
 
-  <input placeholder="Section Name:"
-         [(ngModel)]="sectionName"
-         class="form-control">
+    <input placeholder="Section Name:"
+           [(ngModel)]="sectionName"
+           class="form-control">
 
-  <input placeholder="Seats Available:"
-         [(ngModel)]="seats"
-         class="form-control">
+    <input placeholder="Seats Available:"
+           [(ngModel)]="seats"
+           class="form-control">
 
-  <button
-    (click)="createSection(sectionName, seats)"
-    class="btn btn-success btn-block">
-      Add Section
-  </button>
+    <button
+      (click)="createSection(sectionName, seats)"
+      class="btn btn-success btn-block">
+        Add Section
+    </button>
+    <hr>
+
+  </div>
 
   <ul class="list-group">
     <li *ngFor="let section of sections" class="list-group-item">
