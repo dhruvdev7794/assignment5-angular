@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <h1>Register</h1>
+
+  <input
+    [(ngModel)]="username"
+    placeholder="username"
+    class="form-control"
+  />
+  <input
+    [(ngModel)]="password"
+    placeholder="password"
+    class="form-control"
+  />
+  <input
+    [(ngModel)]="vpassword"
+    placeholder="Verify Password"
+    class="form-control"
+  />
+  <button (click)="register(username, password, vpassword)"
+  class="btn btn-primary btn-block">
+    Submit
+  </button>
+
+  <a routerLink="/login">Login</a>
+  <a routerLink="/home">Home</a>
+</div>
