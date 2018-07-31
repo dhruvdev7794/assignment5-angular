@@ -28,6 +28,15 @@ export class ProfileComponent implements OnInit {
       .then(sections => this.sections = sections);
   }
 
+  unenroll(section) {
+    console.log(section);
+    this.sectionService.unenrollStudentFromSection(section.sectionId._id)
+      .then(function () {
+        return self.sectionService.findSectionsForStudent();
+      })
+      .then(sections => this.sections = sections);
+  }
+
   logout() {
     this.service
       .logout()

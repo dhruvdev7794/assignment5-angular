@@ -20,12 +20,25 @@
   </div>
 
   <ul class="list-group">
-    <li *ngFor="let section of sections" class="list-group-item">
+    <li
+      *ngFor="let section of sections" class="list-group-item">
       {{section.name}}
 
+
+
       <button
+        *ngIf="section.seats > 0"
         (click)="enroll(section)"
-        class="float-right btn btn-primary">Enroll</button>
+        class="float-right btn btn-primary wbdv">Enroll</button>
+      <button
+        *ngIf="username === 'admin' && password === 'admin'"
+        (click)="edit(section)"
+        class="float-right btn btn-primary wbdv">Edit</button>
+      <button
+        *ngIf="username === 'admin' && password === 'admin'"
+        (click)="delete(section)"
+        class="float-right btn btn-primary wbdv">Delete</button>
+      <p class="float-right">{{section.seats}} Seats</p>
     </li>
   </ul>
 </div>

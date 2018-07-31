@@ -20,10 +20,18 @@
   <h2> Sections: ({{sections.length}})</h2>
 
   <ul class="list-group">
-    <li *ngFor="let section of sections"
-
+    <li
+      *ngFor="let section of sections"
         class="list-group-item">
+      <div routerLink="/course/{{section.sectionId.courseId}}"
+      class="float-left">
       {{section.sectionId.name}}
+      </div>
+      <button
+        class="float-right btn btn-primary"
+        (click)="unenroll(section)">
+        Un-enroll
+      </button>
     </li>
   </ul>
 

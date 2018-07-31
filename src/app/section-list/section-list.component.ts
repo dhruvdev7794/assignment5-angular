@@ -42,6 +42,20 @@ export class SectionListComponent implements OnInit {
         this.loadSections(this.courseId);
       });
   }
+
+  edit(section) {
+    const name = prompt('Please enter the new section');
+    if (name != null) {
+      // do something
+    }
+  }
+  delete(section) {
+    console.log(section);
+    this.sectionService.deleteSection(section)
+      .then(() => {
+        this.loadSections(this.courseId);
+      });
+  }
   ngOnInit() {
     this.userService.profile()
       .then(function (response) {

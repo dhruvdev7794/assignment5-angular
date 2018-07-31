@@ -31,6 +31,22 @@ export class SectionServiceClient {
     });
   }
 
+  unenrollStudentFromSection(sectionId) {
+    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+    return fetch(url, {
+      method: 'delete',
+      credentials: 'include'
+    });
+  }
+
+  deleteSection(section) {
+    const url = 'http://localhost:4000/api/section/' + section._id;
+    return fetch(url, {
+      method: 'delete',
+      credentials: 'include'
+    });
+  }
+
   findSectionsForStudent() {
     const url = 'http://localhost:4000/api/student/section';
     return fetch(url, {
