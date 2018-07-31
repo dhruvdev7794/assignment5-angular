@@ -21,6 +21,7 @@ export class ModuleListComponent implements OnInit {
   setParams(params) {
     this.courseId = params['courseId'];
     this.moduleId = params['moduleId'];
+    console.log(this.moduleId);
     this.loadModules(this.courseId);
   }
 
