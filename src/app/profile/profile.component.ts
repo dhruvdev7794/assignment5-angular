@@ -19,10 +19,20 @@ export class ProfileComponent implements OnInit {
   }
 
   sections = [];
+  username = '';
+  firstName = '';
+  lastName = '';
+  email = '';
+
   ngOnInit() {
     this.service
       .profile()
-      .then(user => this.user = user);
+      .then(user => {
+        this.username = user.username;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.email = user.email;
+      });
 
     this.sectionService.findSectionsForStudent()
       .then(sections => this.sections = sections);
@@ -35,6 +45,17 @@ export class ProfileComponent implements OnInit {
         return self.sectionService.findSectionsForStudent();
       })
       .then(sections => this.sections = sections);
+  }
+
+  update() {
+    this.user.username = this.username;
+    this.user.firstName = this.firstName;
+    this.user.lastName = this.lastName;
+    this.user.email = this.email;
+    this.service.updateProfile(this.user)
+      .then(function (response) {
+        console.log(response);
+      });
   }
 
   logout() {

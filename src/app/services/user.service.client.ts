@@ -66,4 +66,16 @@ export class UserServiceClient {
       credentials: 'include'
     });
   }
+
+  updateProfile(user) {
+    console.log(user);
+    return fetch('http://localhost:4000/api/profile', {
+      credentials: 'include',
+      method: 'put',
+      body: JSON.stringify(user),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json());
+  }
 }
