@@ -1,3 +1,49 @@
-<p>
-  widget-list works!
-</p>
+<div *ngFor="let widget of widgets">
+
+  <!--Heading Widget-->
+  <div *ngIf="widget.widgetType === 'Heading'">
+    <div *ngIf="widget.size===1">
+      <h1>{{widget.text}}</h1>
+    </div>
+    <div *ngIf="widget.size===2">
+      <h2>{{widget.text}}</h2>
+    </div>
+    <div *ngIf="widget.size===3">
+      <h3>{{widget.text}}</h3>
+    </div>
+    <div *ngIf="widget.size===4">
+      <h4>{{widget.text}}</h4>
+    </div>
+    <div *ngIf="widget.size===5">
+      <h5>{{widget.text}}</h5>
+    </div>
+    <div *ngIf="widget.size===6">
+      <h6>{{widget.text}}</h6>
+    </div>
+  </div>
+
+  <!--Image Widget-->
+  <div *ngIf="widget.widgetType === 'Image'">
+    <img src="{{widget.src}}">
+  </div>
+
+  <!--Link Widget-->
+  <div *ngIf="widget.widgetType === 'Link'">
+    <a href="{{widget.href}}">{{widget.text}}</a>
+  </div>
+
+  <!--Paragraph Widget-->
+  <div *ngIf="widget.widgetType === 'Paragraph'">
+    <p>{{widget.text}}</p>
+  </div>
+
+  <!--List Widget-->
+  <div *ngIf="widget.widgetType === 'List'">
+    <ul class="list-group">
+      <li class="list-group-item"
+      *ngFor="let listItem of widget.text.split('\n')">
+        {{listItem}}
+      </li>
+    </ul>
+  </div>
+</div>

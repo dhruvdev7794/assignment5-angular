@@ -19,26 +19,39 @@
 
   </div>
 
-  <ul class="list-group">
-    <li
-      *ngFor="let section of sections" class="list-group-item">
-      {{section.name}}
+  <!--<div class="list-group">-->
+    <div
+      *ngFor="let section of sections" class="col-sm-3">
+
+      <div class="card">
 
 
+      <div class="card-body">
+        {{section.name}}
+        <p>{{section.seats}} Seats</p>
+        <div>
+          <button
+            *ngIf="section.seats > 0"
+            (click)="enroll(section)"
+            class="btn btn-primary wbdv">Enroll</button>
+          <button
+            *ngIf="username === 'admin' && password === 'admin'"
+            (click)="delete(section)"
+            class="btn btn-primary wbdv">Delete</button>
+        </div>
+        <div>
+          <button
+            *ngIf="username === 'admin' && password === 'admin'"
+            (click)="edit(section, 'name')"
+            class="btn btn-primary wbdv">Edit Section Name</button>
+          <button
+            *ngIf="username === 'admin' && password === 'admin'"
+            (click)="edit(section, 'seat')"
+            class="btn btn-primary wbdv">Edit Seats</button>
+        </div>
+      </div>
 
-      <button
-        *ngIf="section.seats > 0"
-        (click)="enroll(section)"
-        class="float-right btn btn-primary wbdv">Enroll</button>
-      <button
-        *ngIf="username === 'admin' && password === 'admin'"
-        (click)="edit(section)"
-        class="float-right btn btn-primary wbdv">Edit</button>
-      <button
-        *ngIf="username === 'admin' && password === 'admin'"
-        (click)="delete(section)"
-        class="float-right btn btn-primary wbdv">Delete</button>
-      <p class="float-right">{{section.seats}} Seats</p>
-    </li>
-  </ul>
+      </div>
+    </div>
+  <!--</div>-->
 </div>

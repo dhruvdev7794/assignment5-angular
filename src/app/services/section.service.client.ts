@@ -23,6 +23,18 @@ export class SectionServiceClient {
       .then(response => response.json());
   }
 
+  updateSection(section) {
+    const url = 'http://localhost:4000/api/section/' + section._id;
+    return fetch(url, {
+      method: 'put',
+      credentials: 'include',
+      body: JSON.stringify(section),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json());
+  }
+
   enrollStudentInSection(sectionId) {
     const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
     return fetch(url, {
@@ -50,10 +62,6 @@ export class SectionServiceClient {
     return fetch(url, {
       method: 'delete',
       credentials: 'include',
-      body: JSON.stringify(enrollment),
-      headers: {
-        'content-type': 'application/json'
-      }
     });
   }
 

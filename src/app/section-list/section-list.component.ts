@@ -42,11 +42,38 @@ export class SectionListComponent implements OnInit {
       });
   }
 
-  edit(section) {
-    const name = prompt('Please enter the new section');
-    if (name != null) {
-      // do something
+  edit(section, type) {
+    console.log(type);
+    if (type === 'name') {
+      const val = prompt('Please enter the new section');
+      if (val != null) {
+        section.name = val;
+        console.log(section);
+        const sec = {
+          courseId: section.courseId,
+          _id: section._id,
+          name: section.name,
+          seats: section.seats
+        };
+        this.sectionService.updateSection(sec)
+          .then(() => {
+            this.loadSections(this.courseId);
+          });
+
+
+      }
+    } else {
+      const val = prompt('Please enter the seats');
+      if (val != null) {
+        section.seats = parseInt(val);
+        this.sectionService.updateSection(section)
+          .then(() => {
+            this.loadSections(this.courseId);
+          });
+
+      }
     }
+
   }
   delete(section) {
     console.log(section);

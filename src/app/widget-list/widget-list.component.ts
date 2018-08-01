@@ -9,7 +9,7 @@ import {WidgetServiceClient} from '../services/widget.service.client';
 })
 export class WidgetListComponent implements OnInit {
 
-  constructor(private widgetService: WidgetServiceClient,
+  constructor(private service: WidgetServiceClient,
               private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.setParams(params));
   }
@@ -22,12 +22,13 @@ export class WidgetListComponent implements OnInit {
     // this.courseId = params['courseId'];
     // this.moduleId = params['moduleId'];
     this.lessonId = params['lessonId'];
+    this.loadWidgets(this.lessonId);
 
   }
 
   loadWidgets(lessonId) {
     console.log(lessonId);
-    this.widgetService.findWidgetsforLesson(lessonId)
+    this.service.findWidgetsforLesson(lessonId)
       .then(widgets => this.widgets = widgets);
   }
 
