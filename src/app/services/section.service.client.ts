@@ -1,6 +1,6 @@
 export class SectionServiceClient {
 
-  SECTION_URL = 'http://localhost:4000/api/course/COURSE_ID/section';
+  SECTION_URL = 'https://assignment5-wbdv-node.herokuapp.com/api/course/COURSE_ID/section';
   createSection(courseId, name, seats) {
     const section = {
       name: name,
@@ -24,7 +24,7 @@ export class SectionServiceClient {
   }
 
   updateSection(section) {
-    const url = 'http://localhost:4000/api/section/' + section._id;
+    const url = 'https://assignment5-wbdv-node.herokuapp.com/api/section/' + section._id;
     return fetch(url, {
       method: 'put',
       credentials: 'include',
@@ -36,7 +36,7 @@ export class SectionServiceClient {
   }
 
   enrollStudentInSection(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+    const url = 'https://assignment5-wbdv-node.herokuapp.com/api/section/' + sectionId + '/enrollment';
     return fetch(url, {
       method: 'post',
       credentials: 'include',
@@ -47,7 +47,7 @@ export class SectionServiceClient {
   }
 
   findEnrollment(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+    const url = 'https://assignment5-wbdv-node.herokuapp.com/api/section/' + sectionId + '/enrollment';
     return fetch(url, {
       credentials: 'include',
       headers: {
@@ -58,7 +58,7 @@ export class SectionServiceClient {
 
   unenrollStudentFromSection(enrollment) {
     const sectionId = enrollment[0].sectionId;
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/unenrollment';
+    const url = 'https://assignment5-wbdv-node.herokuapp.com/api/section/' + sectionId + '/unenrollment';
     return fetch(url, {
       method: 'delete',
       credentials: 'include',
@@ -66,7 +66,7 @@ export class SectionServiceClient {
   }
 
   deleteSection(section) {
-    const url = 'http://localhost:4000/api/section/' + section._id;
+    const url = 'https://assignment5-wbdv-node.herokuapp.com/api/section/' + section._id;
     return fetch(url, {
       method: 'delete',
       credentials: 'include',
@@ -77,14 +77,14 @@ export class SectionServiceClient {
   }
 
   getSectionById(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId;
+    const url = 'https://assignment5-wbdv-node.herokuapp.com/api/section/' + sectionId;
     return fetch(url, {
       credentials: 'include'
     }).then(response => response.json());
   }
 
   findSectionsForStudent() {
-    const url = 'http://localhost:4000/api/student/section';
+    const url = 'https://assignment5-wbdv-node.herokuapp.com/api/student/section';
     return fetch(url, {
       credentials: 'include'
     }).then(response => response.json());

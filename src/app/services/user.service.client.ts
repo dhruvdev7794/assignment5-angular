@@ -5,7 +5,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:4000/api/login', {
+    return fetch('https://assignment5-wbdv-node.herokuapp.com/api/login', {
       method: 'post',
       body: JSON.stringify(credentials),
       credentials: 'include',
@@ -16,7 +16,7 @@ export class UserServiceClient {
   }
 
   findUserByCredentials(username, password) {
-    return fetch('http://localhost:4000/api/user/' + username + '/username/' + password + '/password')
+    return fetch('https://assignment5-wbdv-node.herokuapp.com/api/user/' + username + '/username/' + password + '/password')
       .then(function (response) {
         if (response.status > 400) {
           return null;
@@ -26,7 +26,7 @@ export class UserServiceClient {
   }
 
   findUserByUsername(username) {
-    return fetch('http://localhost:4000/api/user/' + username + '/username')
+    return fetch('https://assignment5-wbdv-node.herokuapp.com/api/user/' + username + '/username')
       .then(function (response) {
         if (response.status > 400) {
           return null;
@@ -36,12 +36,12 @@ export class UserServiceClient {
   }
 
   findUserById(userId) {
-    return fetch('http://localhost:4000/api/user/' + userId)
+    return fetch('https://assignment5-wbdv-node.herokuapp.com/api/user/' + userId)
       .then(response => response.json());
   }
 
   profile() {
-    return fetch('http://localhost:4000/api/profile', {
+    return fetch('https://assignment5-wbdv-node.herokuapp.com/api/profile', {
       credentials: 'include'
     })
       .then(response => response.json());
@@ -51,7 +51,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:4000/api/register', {
+    return fetch('https://assignment5-wbdv-node.herokuapp.com/api/register', {
       body: JSON.stringify(user),
       credentials: 'include',
       method: 'POST',
@@ -61,7 +61,7 @@ export class UserServiceClient {
     });
   }
   logout() {
-    return fetch('http://localhost:4000/api/logout', {
+    return fetch('https://assignment5-wbdv-node.herokuapp.com/api/logout', {
       method: 'post',
       credentials: 'include'
     });
@@ -69,7 +69,7 @@ export class UserServiceClient {
 
   updateProfile(user) {
     console.log(user);
-    return fetch('http://localhost:4000/api/profile', {
+    return fetch('https://assignment5-wbdv-node.herokuapp.com/api/profile', {
       credentials: 'include',
       method: 'put',
       body: JSON.stringify(user),
