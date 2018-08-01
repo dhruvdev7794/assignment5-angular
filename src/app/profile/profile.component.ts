@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
   firstName = '';
   lastName = '';
   email = '';
+  phone = '';
+  address = '';
 
   ngOnInit() {
     this.service
@@ -32,6 +34,8 @@ export class ProfileComponent implements OnInit {
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.email = user.email;
+        this.phone = user.phone;
+        this.address = user.address;
       });
 
     this.sectionService.findSectionsForStudent()
@@ -39,12 +43,17 @@ export class ProfileComponent implements OnInit {
   }
 
   unenroll(section) {
-    console.log(section);
-    this.sectionService.unenrollStudentFromSection(section.sectionId._id)
-      .then(function () {
-        return self.sectionService.findSectionsForStudent();
+    this.sectionService.findEnrollment(section.sectionId._id)
+      .then(function (enrollment) {
+        return enrollment;
       })
-      .then(sections => this.sections = sections);
+      .then((enrollment) => {
+        return this.sectionService.unenrollStudentFromSection(enrollment)
+          .then(function () {
+            return self.sectionService.findSectionsForStudent();
+          });
+      }).then(sections => this.sections = sections);
+
   }
 
   update() {
@@ -52,6 +61,8 @@ export class ProfileComponent implements OnInit {
     this.user.firstName = this.firstName;
     this.user.lastName = this.lastName;
     this.user.email = this.email;
+    this.user.phone = this.phone;
+    this.user.address = this.address;
     this.service.updateProfile(this.user)
       .then(function (response) {
         console.log(response);

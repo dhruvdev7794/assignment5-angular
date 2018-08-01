@@ -23,7 +23,7 @@ export class LessonTabsComponent implements OnInit {
     this.courseId = params['courseId'];
     this.moduleId = params['moduleId'];
     this.lessonId = params['lessonId'];
-    this.loadLessons(this.moduleId);
+    console.log(this.lessonId);
   }
 
   loadLessons(moduleId) {
@@ -31,6 +31,7 @@ export class LessonTabsComponent implements OnInit {
       .then(lessons => this.lessons = lessons);
   }
   ngOnInit() {
+    this.loadLessons(this.moduleId);
   }
 
 }

@@ -12,6 +12,13 @@
   <input [(ngModel)]="email"
          placeholder="email"
          class="form-control"/>
+  <input [(ngModel)]="address"
+         placeholder="address"
+         class="form-control"/>
+  <input [(ngModel)]="phone"
+         placeholder="phone"
+         class="form-control"/>
+
   <button (click)="update()"
           class="btn btn-primary btn-block">
     Update
@@ -36,6 +43,7 @@
   </ul>
 
   <a (click)="logout()">Logout</a>
+  |
   <a routerLink="/home">Home</a>
 
 </div>

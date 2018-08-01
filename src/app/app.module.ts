@@ -22,6 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SectionListComponent } from './section-list/section-list.component';
 import {SectionServiceClient} from './services/section.service.client';
 import { WidgetListComponent } from './widget-list/widget-list.component';
+import {WidgetServiceClient} from './services/widget.service.client';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { WidgetListComponent } from './widget-list/widget-list.component';
   ],
   providers: [
     CourseNavigatorServiceClient,
+    WidgetServiceClient,
     CourseServiceClient,
     ModuleServiceClient,
     LessonServiceClient,

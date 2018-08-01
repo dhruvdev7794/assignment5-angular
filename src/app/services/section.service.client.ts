@@ -27,15 +27,33 @@ export class SectionServiceClient {
     const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
     return fetch(url, {
       method: 'post',
-      credentials: 'include'
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
     });
   }
 
-  unenrollStudentFromSection(sectionId) {
+  findEnrollment(sectionId) {
+    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+    return fetch(url, {
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json());
+  }
+
+  unenrollStudentFromSection(enrollment) {
+    const sectionId = enrollment[0].sectionId;
     const url = 'http://localhost:4000/api/section/' + sectionId + '/unenrollment';
     return fetch(url, {
-      method: 'post',
-      credentials: 'include'
+      method: 'delete',
+      credentials: 'include',
+      body: JSON.stringify(enrollment),
+      headers: {
+        'content-type': 'application/json'
+      }
     });
   }
 
@@ -43,8 +61,18 @@ export class SectionServiceClient {
     const url = 'http://localhost:4000/api/section/' + section._id;
     return fetch(url, {
       method: 'delete',
-      credentials: 'include'
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
     });
+  }
+
+  getSectionById(sectionId) {
+    const url = 'http://localhost:4000/api/section/' + sectionId;
+    return fetch(url, {
+      credentials: 'include'
+    }).then(response => response.json());
   }
 
   findSectionsForStudent() {
